@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+{% if form.errors %}
+<p style="color: red;">Your UserName & Password Do Not Match.</p>
+
+{% endif %}
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+
+    <table>
+
+        <tr>
+            <td>{{ form.username.label }}</td>
+            <td>{{ form.username }}</td>
+        </tr>
+
+        <tr>
+            <td>{{ form.password.label }}</td>
+            <td>{{ form.password }}</td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Login">
+
+</form>
+
+<br>
+<a href="{% url 'regsiter' %}"><button type="button" class="btn btn-primary">Click Here to Register</button></a>
+<a href="{% url 'reset_password' %}"><button type="button" class="btn btn-warning">Forget Password</button></a>
+
+{% endblock %}
